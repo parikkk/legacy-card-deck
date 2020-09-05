@@ -1,4 +1,4 @@
-package cc.cards;
+package cc.cards.enums;
 
 public enum Rank {
 
@@ -20,10 +20,20 @@ public enum Rank {
     private int rankPoint;
     private int rankPosition;
 
-    private Rank(String rankName, int rankPosition, int rankPoint){
+    Rank(String rankName, int rankPosition, int rankPoint){
         this.rankName = rankName;
         this.rankPosition = rankPosition;
         this.rankPoint = rankPoint;
+    }
+
+    public static Rank valueOfName(String name){
+        for(Rank rank : Rank.values()){
+            if(rank.getRankName().equals(name)){
+                return rank;
+            }
+        }
+
+        return null;
     }
 
     public String getRankName(){
@@ -36,17 +46,6 @@ public enum Rank {
 
     public int getRankPosition(){
         return rankPosition;
-    }
-
-    public static Rank valueOfName(String name){
-
-        for(Rank rank : Rank.values()){
-            if(rank.getRankName().equals(name)){
-                return rank;
-            }
-        }
-
-        return null;
     }
 
 }

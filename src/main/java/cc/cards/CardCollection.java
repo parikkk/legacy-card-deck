@@ -1,54 +1,16 @@
 package cc.cards;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class CardCollection extends ArrayList<Card> {
+public interface CardCollection<T extends Card> extends BaseEntity {
 
-    public CardCollection(){
+    boolean addCard(T o);
 
-    }
+    boolean addAllCards(List<T> o);
 
-    public CardCollection(Card card){
-        this.add(card);
-    }
+    void sort(List<T> tList);
 
-    public CardCollection(List<String> cards){
-        cards.forEach(card -> this.add(new Card(card)));
-    }
+    List<T> getCards();
 
-    public CardCollection(Collection<String> cards){
-        cards.forEach(card -> this.add(new Card(card)));
-    }
-
-    public List<String> getNames(){
-        return getNames(false);
-    }
-
-    public List<String> getNames(boolean closed){
-
-        List<String> names = new ArrayList<>();
-
-        this.forEach(card -> names.add(closed ? "" : card.getName()));
-
-        return names;
-
-    }
-
-    public void sort(Card trump){
-        Collections.sort(this, new CardComparator(trump));
-    }
-
-    @Override
-    public String toString(){
-
-        String cardNames = this.stream()
-                .map(Card::getName)
-                .collect(Collectors.joining(", "));
-
-        return cardNames;
-    }
+    List<String> getNames();
 }

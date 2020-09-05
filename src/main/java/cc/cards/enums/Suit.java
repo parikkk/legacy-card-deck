@@ -1,4 +1,4 @@
-package cc.cards;
+package cc.cards.enums;
 
 public enum Suit {
 
@@ -10,9 +10,19 @@ public enum Suit {
     private String suitName;
     private int suitValue;
 
-    private Suit(String suitName, int suitValue){
+    Suit(String suitName, int suitValue){
         this.suitName = suitName;
         this.suitValue = suitValue;
+    }
+
+    public static Suit valueOfName(String name){
+        for(Suit suit : Suit.values()){
+            if(suit.getSuitName().equals(name)){
+                return suit;
+            }
+        }
+
+        return null;
     }
 
     public int getSuitValue(){
@@ -23,14 +33,4 @@ public enum Suit {
         return suitName;
     }
 
-    public static Suit valueOfName(String name){
-
-        for(Suit suit : Suit.values()){
-            if(suit.getSuitName().equals(name)){
-                return suit;
-            }
-        }
-
-        return null;
-    }
 }
